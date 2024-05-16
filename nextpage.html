@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Boxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('picha2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Add relative positioning to the body */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Arrange boxes in a column layout */
+            align-items: center;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 20px; /* Add spacing between rows */
+        }
+
+        .box {
+            position: relative; /* Add relative positioning to the box */
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
+            border: 2px solid #000;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 200px;
+            font-size: 24px;
+            margin: 10px; /* Add spacing between boxes */
+            border-radius: 20px; /* Rounded corners for a more modern look */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+            transition: transform 0.3s ease; /* Add smooth transition on hover */
+            background-size: cover; /* Ensure the background image covers the entire box */
+            background-position: center; /* Center the background image */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        .box:hover {
+            transform: scale(1.05); /* Scale up slightly on hover for a nice effect */
+        }
+
+        .loading-container {
+            position: absolute; /* Position the loading container absolutely */
+            top: 50%; /* Position it at 50% from the top */
+            left: 50%; /* Position it at 50% from the left */
+            transform: translate(-50%, -50%); /* Center it horizontally and vertically */
+            display: none; /* Initially hide the loading container */
+        }
+
+        .loading {
+            width: 100%;
+            height: auto;
+            max-width: 200px; /* Set maximum width */
+            animation: bounce 0.5s infinite alternate; /* Animation for bouncing effect */
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="box" style="background-image: url('url_for_box_1_image.jpg');" onclick="showLoading('page1.html')"></div>
+            <div class="box" style="background-image: url('url_for_box_2_image.jpg');" onclick="showLoading('page2.html')"></div>
+        </div>
+        <div class="row">
+            <div class="box" style="background-image: url('url_for_box_3_image.jpg');" onclick="showLoading('page2.html')"></div>
+            <div class="box" style="background-image: url('url_for_box_4_image.jpg');" onclick="showLoading('page2.html')"></div>
+        </div>
+    </div>
+
+    <!-- Loading container -->
+    <div class="loading-container" id="loadingContainer">
+        <img class="loading" src="loading.gif" alt="Loading...">
+    </div>
+
+    <script>
+        function showLoading(url) {
+            // Show the loading container
+            document.getElementById('loadingContainer').style.display = 'block';
+
+            // Hide the loading container after 5 seconds and navigate to the specified URL
+            setTimeout(function() {
+                document.getElementById('loadingContainer').style.display = 'none';
+                window.location.href = url;
+            }, 5000); // 5000 milliseconds = 5 seconds
+        }
+    </script>
+</body>
+</html>
